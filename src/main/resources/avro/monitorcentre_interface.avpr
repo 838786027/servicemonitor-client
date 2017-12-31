@@ -1,0 +1,45 @@
+{  
+  "namespace": "com.gosun.servicemonitor.rpc",  
+  "protocol": "MonitorCentreInterface",  
+  "doc": "MonitorCentreInterface",  
+  
+  "types": [  
+  	{"name": "Info", "type": "record", "fields":[
+  	  {"name":"sendTime", "type": "string"}]},
+    {"name": "Heartbeat", "type": "record", "fields": [
+      {"name": "extraMsg", "type": "string"},
+      {"name": "nodeId", "type": "string"}]},
+    {"name":"Node", "type":"record", "fields":[
+       {"name":"id", "type": "string"},
+       {"name":"ip", "type": "string"},
+       {"name":"role", "type": "string"},
+       {"name":"note", "type": "string"}]},
+    {"name":"Servicer", "type":"record", "fields":[
+       {"name":"name", "type": "string"},
+       {"name":"note", "type": "string"}]},
+    {"name": "RpcEnv", "type": "record", "fields": [  
+      {"name": "ip", "type": "string"},
+      {"name": "port", "type":"int"}]},
+    {"name": "Response", "type": "record", "fields": [  
+      {"name": "status", "type": "int"},
+      {"name": "QTime", "type":"long"},
+      {"name": "msg", "type": "string"}]}
+  ],  
+  
+  "messages": {  
+    "sendHeartbeat": {  
+      "doc": "Send Heartbeat Request.",  
+      "request": [{"name": "heartbeat", "type": "Heartbeat" },
+      	{"name": "info", "type": "Info" }],  
+      "response": "Response"
+    },
+    "registerNode": {
+      "doc": "Register Node Request.",
+      "request": [{"name": "rpcEnv", "type":"RpcEnv"},
+      	{"name": "node","type":"Node"},
+      	{"name": "servicer","type":"Servicer"},
+      	{"name": "info", "type": "Info" }],
+      "response": "Response"
+    }
+  }  
+}

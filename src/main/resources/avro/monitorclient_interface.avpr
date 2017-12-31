@@ -1,0 +1,26 @@
+{  
+  "namespace": "com.gosun.servicemonitor.rpc",  
+  "protocol": "MonitorClientInterface",  
+  "doc": "MonitorClientInterface",  
+  
+  "types": [  
+  	{"name": "Info", "type": "record", "fields":[
+  	  {"name":"sendTime", "type": "string"}]},
+    {"name": "RpcEnv", "type": "record", "fields": [  
+      {"name": "ip", "type": "string"},
+      {"name": "port", "type":"int"}]},
+    {"name": "Response", "type": "record", "fields": [  
+      {"name": "status", "type": "int"},
+      {"name": "QTime", "type":"long"},
+      {"name": "msg", "type": "string"}]}
+  ],  
+  
+  "messages": {  
+    "activate": {
+      "doc": "activate node",
+      "request": [{"name": "rpcEnv","type":"RpcEnv"},
+      	{"name": "info", "type": "Info" }],
+      "response": "Response"
+    }
+  }  
+}
